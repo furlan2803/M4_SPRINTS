@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: #0D1116;
+}
+
+.select-tabuleiro, .play-board , .result-tabuleiro{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 0.3s ease;
+}
+.select-tabuleiro{
+    
+    background: #fff;
+    padding: 20px 25px 25px;
+    border-radius: 5px;
+    max-width: 330px;
+    width: 100%;
+}
+.select-tabuleiro.hide{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%,-50%) scale(0.9);
+}
+
+.select-tabuleiro header{
+    font-size: 23px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.select-tabuleiro .titulo{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.select-tabuleiro .opcaoJogador{
+    display: flex;
+    width: 100%;
+}
+
+.opcaoJogador button{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 0;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.opcaoJogador button:hover,
+.result-tabuleiro .btn button:hover{
+    transform: scale(0.9);
+}
+.opcaoJogador button jogadorX{
+    margin-right: 5px;
+}
+
+.opcaoJogador button jogadorO{
+    margin-left: 5px;
+}
+.play-board{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%,-50%) scale(0.9);
+   
+}
+.play-board.show{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%,-50%) scale(1);
+   
+}
+.play-board .details{
+    background: #fff;
+    padding: 7px;
+    border-radius: 5px;
+}
+.play-board .details .jogadors{
+    display: flex;
+    width: 100%;
+    position:relative;
+    justify-content: space-around;
+}
+.play-board .details span{
+   color:  rgb(111, 52, 205);
+    width: 100%;
+    border-radius: 5px;
+    padding: 7px 0;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: default;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+.details span:first-child{
+    color: #fff;
+}
+.details .slider{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(
+        80deg,
+        rgb(111, 52, 205) 0%,
+        #FF1679 100%
+    );
+    border-radius: 5px;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+.jogadors.active span:first-child{
+    color: #FF1679;
+}
+.fa-times{
+    padding: 30px;
+    color: #FF1679;
+}
+
+.fa-circle{
+    padding: 30px;
+    color: rgb(166, 7, 181);
+
+}
+
+.tituloTabuleiro{
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.jogadors.active span:nth-child(2){
+    color: #fff;
+}
+.jogadors.active .slider{
+    left: 50%;
+}
+
+.play-board .play-area{
+    margin-top: 20px;
+}
+
+.play-board section{
+    display: flex;
+}
+.play-board section span{
+    display: block;
+    margin: 4px;
+    height: 200px;
+    width: 200px;
+    background: rgb(223, 221, 221);
+    border-radius: 25px;
+    font-size: 150px;
+    align-items: center;
+    text-align: center;
+    line-height: 80px;
+}
+
+.result-tabuleiro{
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 350px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50% , -50%) scale(0.9);
+}
+.result-tabuleiro.show{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.result-tabuleiro .won-text{
+    font-size: 25px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+
+.result-tabuleiro .won-text p {
+    font-weight: 600;
+    margin: 0 3px;
+}
+
+.result-tabuleiro .btn {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.result-tabuleiro .btn button {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    outline: none;
+    background: linear-gradient(
+        80deg,
+        rgb(111, 52, 205) 0%,
+        #FF1679 100%
+    );
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
