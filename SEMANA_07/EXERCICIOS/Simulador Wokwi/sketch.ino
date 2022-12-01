@@ -1,7 +1,6 @@
 #include "EspMQTTClient.h"
 #include <string.h>
 #include <Wire.h>
-
 #include <LiquidCrystal_I2C.h>
 #define I2C_SDA 47
 #define I2C_SCL 48

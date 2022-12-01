@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "author": "Giovanna Furlan Torres",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 104.52,
+      "left": 164.94,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 175.26,
+      "left": 159.27,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 84.56,
+      "left": 199.27,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 164.03,
+      "left": 193.41,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 67.02,
+      "left": 231.79,
+      "attrs": { "color": "limegreen" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 144.47,
+      "left": 226.98,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -24.54,
+      "left": 262.81,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -162.06,
+      "left": -58.21,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led1:A", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.4", "black", [ "v15.77", "h-79.93", "v-0.25" ] ],
+    [ "esp:46", "led1:C", "violet", [ "h-21.22", "v122.3", "h195.46", "v-118.1" ] ],
+    [ "r2:1", "led2:A", "black", [ "h0" ] ],
+    [ "r2:2", "esp:GND.4", "black", [ "v27", "h-113.46", "v-0.25" ] ],
+    [ "led2:C", "esp:3", "blue", [ "v157.36", "h-239.46", "v-139.74" ] ],
+    [ "r3:1", "led3:A", "black", [ "h-0.44", "v-14.08", "h0.25" ] ],
+    [ "r3:2", "esp:GND.4", "black", [ "h-0.44", "v46.31" ] ],
+    [ "led3:C", "esp:17", "orange", [ "v182.74", "h-279.22", "v-176.38" ] ],
+    [ "bz1:1", "esp:GND.4", "black", [ "v0" ] ],
+    [ "bz1:2", "esp:39", "cyan", [ "v240.57", "h-196.38", "v-194.25" ] ],
+    [ "lcd1:GND", "esp:GND.4", "black", [ "h-40.03", "v126.99", "h205.02", "v233.65" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-30.47", "v341.54" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-23.65", "v99.35", "h201.12", "v203.89" ] ],
+    [ "lcd1:SCL", "esp:47", "white", [ "h-14.51", "v81.72", "h205.89", "v202.42" ] ]
+  ]
+}
