@@ -127,11 +127,6 @@ function selectWinner(){
         runBot = false;
         bot(runBot);
         quemGanhou();
-        // setTimeout(()=>{
-        //     playBoard.classList.remove("show");
-        //     resulttabuleiro.classList.add("show");
-        // },700);
-        // wonText.innerHTML = `Jogador  <p>${jogadorSign}</p>  Ganhou!`;
     }else{
 
         // Se nenhum jogador marcou 3 ícones em sequência, verifica se todas as células do tabuleiro estão preenchidas
@@ -140,11 +135,6 @@ function selectWinner(){
             runBot = false;
             bot(runBot);
             empate();
-            // setTimeout(()=>{
-            //     playBoard.classList.remove("show");
-            //     resulttabuleiro.classList.add("show");
-            // },700);
-            // wonText.textContent = `Jogo Empatou!`;
         }
 
     }
@@ -166,10 +156,6 @@ function onConnect() {
 
     // Subscribe to a topic called "".
     client.subscribe("INTELI/Semana7/JogoDaVelha");
-
-    // message = new Paho.MQTT.Message("Oi, deu tudo certo!");
-    // message.destinationName = "Inteli/Elias/Jogo";
-    // client.send(message);
 
 }
 

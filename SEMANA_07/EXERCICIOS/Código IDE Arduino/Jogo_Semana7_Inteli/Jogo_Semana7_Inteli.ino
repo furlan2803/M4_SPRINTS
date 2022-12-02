@@ -12,8 +12,6 @@ EspMQTTClient client(
 
   "Inteli-COLLEGE",
   "QazWsx@123",
-  // "SHARE-RESIDENTE 2",
-  // "Share@residente",
   "broker.hivemq.com",
   "giovannaJogoDaVelhaSemana7"
 
@@ -30,21 +28,25 @@ void onConnectionEstablished() {
       lcd.print("Parabens!");
       digitalWrite(8, HIGH);
       delay(3000);
-      tone(40,440,500);
-      tone(40,294,300); 
-      tone(40,349,250);
-      tone(40,392,250);
-      tone(40,440,250); 
-      tone(40,294,300);
-      tone(40,349,200);
-      tone(40,392,200);
-      tone(40,330,700);
-      tone(40,392,500); 
-      tone(40,262,500); 
-      tone(40,349,200);
-      tone(40,330,200); 
-      tone(40,392,200);
-      noTone(40);
+      tone(38,1898,150);
+      delay(75);
+      tone(38,1690,150);
+      delay(75);
+      tone(38,1500,150);
+      delay(75);
+      tone(38,1420,150);
+      delay(75);
+      tone(38,1265,150);
+      delay(75);
+      tone(38,1194,150);
+      delay(75);
+      tone(38,1126,150);
+      delay(75);
+      tone(38,1063,150);
+      delay(75);
+      tone(38,1001,150); 
+      delay(75);
+      noTone(38);
       digitalWrite(8, LOW);
       delay(3000);
       lcd.clear();
@@ -57,16 +59,19 @@ void onConnectionEstablished() {
       lcd.print("Tente Novamente");
       digitalWrite(16, HIGH);
       delay(3000);
-      tone(40,500,200);
-      tone(40,500,200);
-      tone(40,500,200);
-      tone(40,800,150);
-      tone(40,500,500);
-      tone(40,600,1000);
-      tone(40,392,200);
-      tone(40,330,700);
-      tone(40,392,500); 
-      noTone(40);
+      tone(38,494,100);
+      tone(38,988,100);
+      tone(38,740,100);
+      tone(38,622,100);
+      tone(38,740,100);
+      tone(38,622,100);
+      tone(38,523,100);
+      tone(38,1047,100);
+      tone(38,784,100); 
+      tone(38,659,100);
+      tone(38,1047,100);
+      tone(38,784,100); 
+      noTone(38);
       digitalWrite(16, LOW);
       delay(1000);   
       lcd.clear();
@@ -79,20 +84,30 @@ void onConnectionEstablished() {
       lcd.print("Parabens!");
       digitalWrite(3, HIGH);
       delay(3000);
-      tone(40,500,200);
-      tone(40,800,150);
-      tone(40,800,150);
-      tone(40,500,200);
-      tone(40,500,200);
-      tone(40,500,500);
-      tone(40,500,500);
-      tone(40,600,1000);
-      noTone(40);
+      tone(38,660,150);
+      delay(200);
+      tone(38,660,150);
+      delay(200);
+      tone(38,660,300);
+      delay(200);
+      tone(38,510,150);
+      delay(100);
+      tone(38,660,150);
+      delay(400);
+      tone(38,770,150);
+      delay(200);
+      tone(38,380,150);
+      delay(200);
+      tone(38,510,150);
+      delay(200);
+      tone(38,380,150); 
+      delay(200);
+      noTone(38);
       digitalWrite(3, LOW);
       delay(3000);   
       lcd.clear();
     }
-
+    lcd.clear();
     lcd.print("Novo Jogo");
     lcd.setCursor(0, 1);
     lcd.print("Boa Sorte");
@@ -111,11 +126,13 @@ void setup() {
   pinMode(8, OUTPUT);
   pinMode(16, OUTPUT);
   pinMode(3, OUTPUT);
-  pinMode(40, OUTPUT);
+  pinMode(38, OUTPUT);
 
   Wire.begin(I2C_SDA, I2C_SCL);
   lcd.init();
   lcd.backlight();
+  lcd.print("Bem-Vindo");
+  lcd.setCursor(0, 1);
   lcd.print("Bom Jogo");
 
 }
