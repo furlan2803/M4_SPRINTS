@@ -143,34 +143,37 @@ function selectWinner(){
 ///////////////////////////////////////////////////////////////////////////
 
 
-// Instancing mqtt server info.
+// Iniciando a conexão com o servidor
 const MQTT_HOST = "broker.hivemq.com";
 const MQTT_PORT = 8000;
 const MQTT_CLIENT_ID = "5e8391cc-cecc-4d70-bd1d-731d17e7f7cg"
 
-// Creating a client instance.
+// Criando a instancia para o cliente 
 let client = new Paho.MQTT.Client(MQTT_HOST, MQTT_PORT, MQTT_CLIENT_ID);
 
-// Instancing a function to be called when the client connects.
+// Função que instancia o canal quando o cliente conecta ao servidor
 function onConnect() {
 
-    // Subscribe to a topic called "".
+    // Conectando o cliente ao servidor
     client.subscribe("INTELI/Semana7/JogoDaVelha");
 
 }
 
+// Função que recebe a mensagem do servidor e manda a resposta para o cliente, quando o "X" vence
 function acenderX() {
     newmesg = new Paho.MQTT.Message("acenderX");
     newmesg.destinationName = "INTELI/Semana7/JogoDaVelha";
     client.send(newmesg);
 }
 
+// Função que recebe a mensagem do servidor e manda a resposta para o cliente, quando da empate
 function acenderEmpate() {
     newmesg = new Paho.MQTT.Message("acenderEmpate");
     newmesg.destinationName = "INTELI/Semana7/JogoDaVelha";
     client.send(newmesg);
 }
 
+// Função que recebe a mensagem do servidor e manda a resposta para o cliente, quando a "O" vence
 function acenderO(){
     newmesg = new Paho.MQTT.Message("acenderO");
     newmesg.destinationName = "INTELI/Semana7/JogoDaVelha";
@@ -178,58 +181,53 @@ function acenderO(){
 }
 
 
-// Instancing a function to be called when the client disconnects.
+// Instanciamento a função que executa quando o cliente é desconectado do servidor
 function onConnectionLost(responseObject) {
 
+    // Verifica se o cliente foi desconectado do servidor
     if (responseObject.errorCode !== 0) {
       console.log(`A conexão foi encerrada: ${responseObject.errorMessage}`);
     }
 
 }
 
-// Instancing a function to be called when a message arrives.
+// Função que executa quando o cliente recebe uma mensagem do servidor
 function onMessageArrived(message) {
 
+    // Verifica se as mensagens do servidor estão chegando corretamente
     if(message.destinationName == "INTELI/Semana7/JogoDaVelha" && message.payloadString == "Mandando mensagem!") {
 
         newmesg = new Paho.MQTT.Message("Recebi a sua mensagem aqui.");
         newmesg.destinationName = message.destinationName;
         client.send(newmesg);
-
     }
-
-    console.log(message.destinationName);
-
-    console.log(`Uma mensagem acabou de chegar: ${message.payloadString}`);
-
 }
 
 
-// Setting up callback handlers. 
+// Iniciando a conexão com o servidor
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 
-// Connecting to the server.
 client.connect({ 
     onSuccess: onConnect
 });
 
 
 
-// TESTEEE DE QUEM GANHOU
-
+// Função que executa para verificar o jogador que venceu
 function quemGanhou() {
+    // Se o jogador que venceu for o "X", manda mensagem para o servidor e recarrega a página
     if (jogadorSign == "X") {
         acenderX();
         window.location.reload();
     }
-    
+    // Se o jogador que venceu for o "O", manda mensagem para o servidor e recarrega a página
     if(jogadorSign == "O") {
         acenderO();
         window.location.reload();
     }
 }
-
+// Se o jogo der "Empate", manda mensagem para o servidor e recarrega a página
 function empate() {
     acenderEmpate();
     window.location.reload();

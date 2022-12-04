@@ -1,13 +1,16 @@
+// Declara as bibliotecas utilizadas
 #include "EspMQTTClient.h"
 #include <string.h>
 #include <Wire.h>
-
 #include <LiquidCrystal_I2C.h>
+
+// Definindo os pinos utilizados para ligar o display LCD
 #define I2C_SDA 47
 #define I2C_SCL 48
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+// Definindo a interface de rede a qual o servidor vá utilizar
 EspMQTTClient client(
 
   "Inteli-COLLEGE",
@@ -17,10 +20,12 @@ EspMQTTClient client(
 
 );
 
+// Conectando com o Servidor MQTT
 void onConnectionEstablished() {
 
   client.subscribe("INTELI/Semana7/JogoDaVelha", [] (const String &payload)  {
 
+    // Se receber a mensagem de "acenderX", liga o display LCD, o Led e o Buzzer, exibindo que o jogador X ganhou
     if(payload == "acenderX") {
       lcd.clear();
       lcd.print("Jogador X ganhou");
@@ -52,6 +57,7 @@ void onConnectionEstablished() {
       lcd.clear();
     }
 
+    // Se receber a mensagem de "acenderEmpate", liga o display LCD, o Led e o Buzzer, exibindo que o jogo deu empate
     if(payload == "acenderEmpate"){
       lcd.clear();
       lcd.print("O jogo Empatou");
@@ -77,6 +83,7 @@ void onConnectionEstablished() {
       lcd.clear();
     }
 
+    // Se receber a mensagem de "acenderO", liga o display LCD, o Led e o Buzzer, exibindo que o jogador O ganhou
     if(payload == "acenderO"){
       lcd.clear();
       lcd.print("Jogador O ganhou");
@@ -115,6 +122,7 @@ void onConnectionEstablished() {
 
   });
 
+  // Exibe a mensagem que o ESP conectou com o servidor MQTT
   client.publish("INTELI/Semana7/JogoDaVelha", "Acabei de conectar!");
 
 }
@@ -123,11 +131,13 @@ void setup() {
 
   Serial.begin(115200);
 
+  // Definindo os pinos dos led's e o do buzzer
   pinMode(8, OUTPUT);
   pinMode(16, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(38, OUTPUT);
 
+  // Primeira escrita no display LCD, quando o jogo ainda não começou
   Wire.begin(I2C_SDA, I2C_SCL);
   lcd.init();
   lcd.backlight();
@@ -139,6 +149,7 @@ void setup() {
 
 void loop() {
 
+  // Mensagem do cliente para o servidor MQTT
   client.loop();
   delay(1000);
 
